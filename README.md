@@ -11,7 +11,7 @@ Add support for Kylin OS in installation script
 银河麒麟桌面操作系统 V10 SP1（2403）
 验证版本：Citrix Virtual Apps and Desktops 22.03 update 4000
 
-统信UOS20 （）1070）
+统信UOS20 （1070）
 验证版本：Citrix Virtual Apps and Desktops 22.03 update 7000
 
 加入域方式：Winbind（推荐）/ SSSD
