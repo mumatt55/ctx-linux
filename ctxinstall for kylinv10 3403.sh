@@ -149,6 +149,7 @@ pkgListRhel8Num=${#pkgListRhel8[@]}
 pkgListUpdateRhel7Num=${#pkgListUpdateRhel7[@]}
 pkgListUpdateRhel8Num=${#pkgListUpdateRhel8[@]}
 
+#Kylin
 pkgListKylin=("chrony" "ntpdate" "libsasl2-2" "libgtk2.0-0")
 winbindPkgListKylin=("winbind" "samba" "libnss-winbind" "libpam-winbind" "krb5-config" "krb5-locales" "krb5-user" "oddjob-mkhomedir")
 
@@ -662,7 +663,7 @@ function getSysInfo()
         fi
 
         osVersion="$(< $coreFileOS grep VERSION_ID |cut -d '=' -f2 |tr '[:upper:]' '[:lower:]' |sed 's/\"//g' 2>&1)" 
-        #new
+        #Kylin
 		[[ "$$ osPlatform" == "kylin" ]] && osVersion=" $${osVersion#v}"   # 去掉 v10 中的 v
         if [[ "$?" -ne "0" || -z "${osVersion}" ]]; then           
             myPrint "$infoVersion"
@@ -679,6 +680,7 @@ function getSysInfo()
     # Set packagemanagement according to osPlatform
     if [[ "${osPlatform}" == "red" || "${osPlatform}" == "centos" || "${osPlatform}" == "amzn" || "${osPlatform}" == "rocky" ]]; then
         pkgManagement="yum"
+	#Kylin
     #elif [[ "${osPlatform}" == "ubuntu" ]] || [[ "${osPlatform}" == "pardus" ]] || [[ "${osPlatform}" == "debian" ]]; then
     elif [[ "$$ {osPlatform}" == "ubuntu" || " $${osPlatform}" == "kylin" || "$$ {osPlatform}" == "pardus" || " $${osPlatform}" == "debian" ]]; then
         pkgManagement="apt"
@@ -831,6 +833,7 @@ function repositoryCheck()
             info="$(get_str CTXINSTALL_NUM_REPOSITORY_PRECHECK 3 ${repositoryNumbers})"
             myPrint "$info"
         fi
+	#Kylin
     #elif [[ "${osPlatform}" == "ubuntu" || "${osPlatform}" == "pardus" || "${osPlatform}" == "debian" ]]; then
     elif [[ "$$ {osPlatform}" == "ubuntu" || " $${osPlatform}" == "kylin" || "$$ {osPlatform}" == "pardus" || " $${osPlatform}" == "debian" ]]; then
         repositoryNumbers=$(cat /etc/apt/sources.list |egrep -i "^deb" |wc -l)
@@ -1624,7 +1627,8 @@ function installation()
        installationAmazon
     elif [[ -n "$osPlatform" && "$osPlatform" == "suse" ]]; then
        installationSuse
-    #elif [[ -n "$osPlatform" && "$osPlatform" == "ubuntu" ]]; then
+    #Kylin
+	#elif [[ -n "$osPlatform" && "$osPlatform" == "ubuntu" ]]; then
     elif [[ -n "$osPlatform" && ( "$osPlatform" == "ubuntu" || "$osPlatform" == "kylin" ) ]]; then
        installationUbuntu
     elif [[ -n "$osPlatform" && "$osPlatform" == "pardus" ]]; then
@@ -4992,6 +4996,7 @@ function verfication()
         verficationAmazon
     elif [[ -n "$osPlatform" && "$osPlatform" == "suse" ]]; then
         verficationSuse
+   #Kylin
    # elif [[ -n "$osPlatform" && "$osPlatform" == "ubuntu" ]]; then
     elif [[ -n "$osPlatform" && ( "$osPlatform" == "ubuntu" || "$osPlatform" == "kylin" ) ]]; then
         verficationUbuntu
