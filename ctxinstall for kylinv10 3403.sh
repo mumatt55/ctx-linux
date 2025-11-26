@@ -787,7 +787,7 @@ function osPlatformCheck()
             myPrint "$info"
             preCheckStatus="Warning"
         fi
-	#new	
+	#Kylin	
     elif [[ "${osPlatform}" == "kylin" ]]; then
         if [[ "${osVersion}" == "10" ]]; then
             info="$(get_str CTXINSTALL_PLATFORM_INFO_PRECHECK  2  'Kylin' ${osVersion})"
